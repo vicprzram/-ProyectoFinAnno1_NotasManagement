@@ -4,12 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/margen"
     tools:context=".PantallaInicio">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <ImageView
+        android:id="@+id/ivUE"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/logoue" />
+
+    <LinearLayout
+        android:id="@+id/llBotones"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pantalla Inicio"
-        android:layout_centerInParent="true"/>
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        >
+
+
+        <Button
+            android:id="@+id/btnRegistrar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/btn_registrar"
+            android:layout_marginRight="@dimen/mitad_margen"
+            android:backgroundTint="@color/botones"
+            />
+
+        <Button
+            android:id="@+id/btnConsultar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/btn_consultar"
+            android:layout_marginLeft="@dimen/mitad_margen"
+            android:backgroundTint="@color/botones"/>
+
+    </LinearLayout>
 
 </RelativeLayout>

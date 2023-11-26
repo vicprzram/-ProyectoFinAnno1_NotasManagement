@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">EvaluacionT1_vl</string>
+    <string name="btn_registrar">Registrar nota</string>
+    <string name="btn_consultar">Consultar nota</string>
 </resources>
