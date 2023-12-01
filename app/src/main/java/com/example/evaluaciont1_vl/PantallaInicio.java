@@ -7,12 +7,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.example.evaluaciont1_vl.datos.FileManager;
+import com.example.evaluaciont1_vl.datos.ListadoNotas;
+import com.example.evaluaciont1_vl.datos.NotasAlumnoAsig;
 
 public class PantallaInicio extends AppCompatActivity implements View.OnClickListener{
 
     Button btnRegistro;
     Button btnConsulta;
     ImageView ivLogo;
+
+    ListadoNotas listadoNotas = new ListadoNotas();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +39,11 @@ public class PantallaInicio extends AppCompatActivity implements View.OnClickLis
         Intent i;
         if(v.getId() == R.id.btnRegistrar){
             i = new Intent(this, PantallaRegistro.class);
+            i.putExtra("ListadoNotas", listadoNotas);
             startActivity(i);
         }else if(v.getId() == R.id.btnConsultar){
             i = new Intent(this, PantallaConsulta.class);
+            i.putExtra("ListadoNotas", listadoNotas);
             startActivity(i);
         }
 

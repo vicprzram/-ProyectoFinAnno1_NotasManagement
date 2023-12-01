@@ -7,9 +7,133 @@
     tools:context=".PantallaRegistro">
 
     <TextView
+        android:id="@+id/tvTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pantalla Registro"
-        android:layout_centerInParent="true"/>
+        android:layout_marginLeft="@dimen/margen"
+        android:layout_marginTop="@dimen/margen"
+        android:text="@string/tv_principal"
+        android:textSize="@dimen/titulos"
+        android:textColor="@color/red"
+        android:textStyle="bold"/>
 
+    <LinearLayout
+        android:id="@+id/llAlumno"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/tvTitulo"
+        android:layout_margin="@dimen/margen">
+
+        <EditText
+            android:id="@+id/etAlumno"
+            android:layout_width="@dimen/width_editText"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:textSize="@dimen/margen"
+            android:hint="@string/et_alumno"/>
+
+        <Button
+            android:id="@+id/btnAlumno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_alumno"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llAsignatura"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/llAlumno"
+        android:layout_margin="@dimen/margen">
+
+        <EditText
+            android:id="@+id/etAsignatura"
+            android:layout_width="@dimen/width_editText"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:textSize="@dimen/margen"
+            android:hint="@string/et_asignatura"/>
+
+        <Button
+            android:id="@+id/btnAsignatura"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_asignatura"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llNotas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/llAsignatura"
+        android:layout_margin="@dimen/margen">
+
+        <EditText
+            android:id="@+id/etNotaExamen"
+            android:layout_width="@dimen/width_editText_pequennos"
+            android:layout_height="wrap_content"
+            android:hint="@string/et_notaExamen"
+            android:layout_marginRight="@dimen/margen"
+            android:inputType="number"/>
+
+        <EditText
+            android:id="@+id/etNotaActividades"
+            android:layout_width="@dimen/width_editText_pequennos"
+            android:layout_height="wrap_content"
+            android:hint="@string/et_notaActividades"
+            android:inputType="number"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llCalcular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="@dimen/margen"
+        android:layout_below="@id/llNotas">
+
+        <Button
+            android:id="@+id/btnCalcular"
+            android:layout_width="@dimen/btnCalcular"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_calcular"/>
+
+        <EditText
+            android:id="@+id/etCalcular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:enabled="false"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llBotones"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margen"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+
+
+        <Button
+            android:id="@+id/btnGuardar"
+            android:layout_width="@dimen/width_editText_pequennos"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_guardarDatos"
+            android:layout_marginRight="@dimen/margen"/>
+
+        <Button
+            android:id="@+id/btnLimpiar"
+            android:layout_width="@dimen/width_editText_pequennos"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_limpiarDatos"/>
+    </LinearLayout>
 </RelativeLayout>

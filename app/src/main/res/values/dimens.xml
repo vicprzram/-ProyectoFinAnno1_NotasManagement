@@ -2,4 +2,10 @@
 <resources>
     <dimen name="margen">16dp</dimen>
     <dimen name="mitad_margen">8dp</dimen>
+    <dimen name="tamanno_imagen">250dp</dimen>
+    <dimen name="titulos">30dp</dimen>
+    <dimen name="width_editText">230dp</dimen>
+    <dimen name="width_editText_pequennos">180dp</dimen>
+    <dimen name="btnCalcular">110dp</dimen>
+    <dimen name="btnGuardarLimpiar">200dp</dimen>
 </resources>

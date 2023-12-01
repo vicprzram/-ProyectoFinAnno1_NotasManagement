@@ -3,6 +3,7 @@
     <style name="Base.Theme.EvaluacionT1_vl" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/red</item> <!-- Cmabiar color a la barra superior de notificaciones -->
     </style>
 
     <style name="Theme.EvaluacionT1_vl" parent="Base.Theme.EvaluacionT1_vl" />

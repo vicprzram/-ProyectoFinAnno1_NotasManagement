@@ -9,10 +9,10 @@
 
     <ImageView
         android:id="@+id/ivUE"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
+        android:layout_width="@dimen/tamanno_imagen"
+        android:layout_height="@dimen/tamanno_imagen"
         android:layout_centerInParent="true"
-        android:src="@drawable/logoue" />
+        android:src="@drawable/logo_ue" />
 
     <LinearLayout
         android:id="@+id/llBotones"
@@ -30,7 +30,7 @@
             android:layout_weight="1"
             android:text="@string/btn_registrar"
             android:layout_marginRight="@dimen/mitad_margen"
-            android:backgroundTint="@color/botones"
+            android:backgroundTint="@color/red"
             />
 
         <Button
@@ -40,7 +40,7 @@
             android:layout_weight="1"
             android:text="@string/btn_consultar"
             android:layout_marginLeft="@dimen/mitad_margen"
-            android:backgroundTint="@color/botones"/>
+            android:backgroundTint="@color/red"/>
 
     </LinearLayout>
 

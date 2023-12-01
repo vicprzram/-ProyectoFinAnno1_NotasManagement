@@ -1,5 +1,19 @@
 <resources>
     <string name="app_name">EvaluacionT1_vl</string>
+
+    <!-- Pantalla Inicio -->
     <string name="btn_registrar">Registrar nota</string>
     <string name="btn_consultar">Consultar nota</string>
+
+    <!-- Pantalla Registro -->
+    <string name="tv_principal">Registro de nota</string>
+    <string name="et_alumno">Selecciona el alumno</string>
+    <string name="btn_alumno">Seleccionar alumno</string>
+    <string name="btn_asignatura">Seleccionar asignatura</string>
+    <string name="et_asignatura">Selecciona asignatura</string>
+    <string name="et_notaExamen">nota examen</string>
+    <string name="et_notaActividades">nota actividades</string>
+    <string name="btn_calcular">Calcular nota</string>
+    <string name="btn_guardarDatos">Guardar datos</string>
+    <string name="btn_limpiarDatos">Limpiar datos</string>
 </resources>
