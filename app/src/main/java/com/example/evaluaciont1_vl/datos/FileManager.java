@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class FileManager {
 
@@ -94,27 +95,33 @@ public class FileManager {
         try(RandomAccessFile raf = new RandomAccessFile(PATH_OUT, "rw")){
             StringBuffer sb;
             String nombre, asignatura;
-            double notaExamen, notaFinal, notaActividades;
+            double notaE, notaA, notaF;
+
 
             raf.seek(0);
 
-                sb = new StringBuffer();
+            while(raf.getFilePointer() < raf.length()){
+                nombre = "";
+
                 for(int i = 0; i < BYTE_NOMBRE; i++){
-                    sb.append(raf.readChar());
+                    nombre += raf.readChar();
                 }
-                sb.setLength(BYTE_NOMBRE);
-                a += sb.toString();
 
-                sb = new StringBuffer();
+                asignatura = "";
+
                 for(int i = 0; i < BYTE_ASIGNATURA; i++){
-                    sb.append(raf.readChar());
+                    asignatura += raf.readChar();
                 }
-                sb.setLength(BYTE_ASIGNATURA);
-                a += " " + sb.toString();
 
-                a += " " + raf.readDouble();
-                a += " " + raf.readDouble();
-                a += " " + raf.readDouble();
+                notaE = raf.readDouble();
+                notaA = raf.readDouble();
+                notaF = raf.readDouble();
+
+                if(nombre.trim().equals("Liana Vilkelenoka")){
+                    a += nombre + " " + asignatura + " " + notaE + " " + notaA + " " + notaF;
+                    break;
+                }
+            }
 
 
 
@@ -125,5 +132,38 @@ public class FileManager {
         }
         return a;
     }
+
+    public static void modificarNota(NotasAlumnoAsig alumno){
+        try(RandomAccessFile raf = new RandomAccessFile(PATH_OUT, "rw")){
+
+            String nombre;
+
+
+            raf.seek(0);
+            while(raf.getFilePointer() < raf.length()){
+                 nombre = "";
+
+                for(int i = 0; i < BYTE_NOMBRE; i++){
+                    nombre += raf.readChar();
+                }
+
+                if(nombre.trim().equals(alumno.getNombre())){
+                    raf.seek(raf.getFilePointer() + BYTE_ASIGNATURA);
+                    raf.writeDouble(alumno.getNotaExamen());
+                    raf.writeDouble(alumno.getNotaActividades());
+                    raf.writeDouble(alumno.getNotaFinal());
+                    raf.seek(raf.length());
+                }else{
+                    raf.seek(raf.getFilePointer() + (BYTE_MAX - BYTE_NOMBRE));
+                }
+            }
+
+
+
+        }catch(FileNotFoundException e){
+            Log.e("FileNotFoundException", ERROR_FILE + PATH_OUT);
+        }catch(IOException e){
+            Log.e("IOException", e.getMessage());
+        }    }
 
 }
