@@ -16,4 +16,10 @@
     <string name="btn_calcular">Calcular nota</string>
     <string name="btn_guardarDatos">Guardar datos</string>
     <string name="btn_limpiarDatos">Limpiar datos</string>
+    <string name="erro_no_data">Se debe seleccionar un alumno</string>
+
+    <!-- Pantalla de alumnos -->
+    <string name="tv_alumnos">Selección de Alumno</string>
+    <string name="btn_cancelar">Cancelar</string>
+    <string name="btn_aceptar">Aceptar</string>
 </resources>

@@ -2,6 +2,7 @@ package com.example.evaluaciont1_vl;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -41,9 +42,10 @@ public class PantallaRegistro extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-
+        Intent i;
         if(v.getId() == R.id.btnAlumno){
-            Toast.makeText(this, "Boton no implementado", Toast.LENGTH_LONG).show();
+            i = new Intent(this, PantallaSeleccionAlumno.class);
+            startActivityForResult(i, 1);
         }else if(v.getId() == R.id.btnAsignatura){
             Toast.makeText(this, "Boton no implementado", Toast.LENGTH_LONG).show();
         }else if(v.getId() == R.id.btnCalcular){
@@ -70,6 +72,14 @@ public class PantallaRegistro extends AppCompatActivity implements View.OnClickL
             etNotaFinal.getText().clear();
 
             btnCalcularNota.setEnabled(true);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == RESULT_OK){
+            etAlumno.setText(data.getStringExtra("alumno"));
         }
     }
 }

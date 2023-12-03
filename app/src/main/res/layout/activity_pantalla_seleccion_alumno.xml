@@ -4,12 +4,65 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/alumnosMain"
     tools:context=".PantallaSeleccionAlumno">
 
     <TextView
+        android:id="@+id/tvTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pantalla Seleccion alumno"
-        android:layout_centerInParent="true"/>
+        android:layout_marginLeft="@dimen/margen"
+        android:layout_marginTop="@dimen/margen"
+        android:text="@string/tv_alumnos"
+        android:textSize="@dimen/titulos"
+        android:textColor="@color/red"
+        android:textStyle="bold"/>
+
+    <LinearLayout
+        android:id="@+id/llAlumnos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/tvTitulo"
+        android:layout_margin="@dimen/margen"
+        android:paddingTop="0dp"
+        android:paddingBottom="0dp"
+        android:weightSum="44">
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/etAlumnoPestanna"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:layout_margin="@dimen/margen"
+        android:textAlignment="center"
+        android:layout_above="@id/llBotonesAlumno"/>
+
+    <LinearLayout
+        android:id="@+id/llBotonesAlumno"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/btnAceptar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/btn_aceptar"
+            android:layout_margin="@dimen/mitad_margen"/>
+
+        <Button
+            android:id="@+id/btnCancelar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/btn_cancelar"
+            android:layout_margin="@dimen/mitad_margen"/>
+
+    </LinearLayout>
 
 </RelativeLayout>
