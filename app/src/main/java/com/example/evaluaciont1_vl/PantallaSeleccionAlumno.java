@@ -18,7 +18,6 @@ import com.example.evaluaciont1_vl.datos.Utilities;
 
 public class PantallaSeleccionAlumno extends AppCompatActivity implements View.OnClickListener {
 
-    private static final int MAX_BOTONES = 22;
     private EditText etAlumnoPestanna;
     private Button btnAceptar, btnCancelar;
 
@@ -40,11 +39,11 @@ public class PantallaSeleccionAlumno extends AppCompatActivity implements View.O
                 LinearLayout.LayoutParams.WRAP_CONTENT);
         lp.weight = 3;
 
-        for(int i = 0; i < MAX_BOTONES; i++){
+        for(String s : Utilities.getAlumnos()){
             Button button = new Button(this);
 
             button.setLayoutParams(lp);
-            button.setText(Utilities.getAlumnos()[i]);
+            button.setText(s);
             button.setPadding(0,0,0,0);
             button.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
             button.setTextSize(12);

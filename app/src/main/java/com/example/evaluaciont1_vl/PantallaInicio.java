@@ -38,6 +38,7 @@ public class PantallaInicio extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         Intent i;
         if(v.getId() == R.id.btnRegistrar){
+            Toast.makeText(this, FileManager.comprobacion(), Toast.LENGTH_LONG).show();
             i = new Intent(this, PantallaRegistro.class);
             i.putExtra("ListadoNotas", listadoNotas);
             startActivity(i);

@@ -7,9 +7,61 @@
     tools:context=".PantallaSeleccionAsignatura">
 
     <TextView
+        android:id="@+id/tvTituloAsignatura"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pantalla Seleccion asignatura"
-        android:layout_centerInParent="true"/>
+        android:layout_marginLeft="@dimen/margen"
+        android:layout_marginTop="@dimen/margen"
+        android:text="@string/tv_alumnos"
+        android:textSize="@dimen/titulos"
+        android:textColor="@color/red"
+        android:textStyle="bold"/>
+
+    <LinearLayout
+        android:id="@+id/llAsignatura"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/tvTituloAsignatura"
+        android:layout_margin="@dimen/margen"
+        android:paddingTop="0dp"
+        android:paddingBottom="0dp"
+        android:weightSum="7">
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/etAsignaturaPestanna"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:layout_margin="@dimen/margen"
+        android:textAlignment="center"
+        android:layout_above="@id/llBotonesAsignatura"/>
+
+    <LinearLayout
+        android:id="@+id/llBotonesAsignatura"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/btnAceptarAsignatura"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/btn_aceptar"
+            android:layout_margin="@dimen/mitad_margen"/>
+
+        <Button
+            android:id="@+id/btnCancelarAsignatura"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/btn_cancelar"
+            android:layout_margin="@dimen/mitad_margen"/>
+
+    </LinearLayout>
 
 </RelativeLayout>

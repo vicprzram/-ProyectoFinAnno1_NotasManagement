@@ -9,10 +9,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.evaluaciont1_vl.datos.FileManager;
+import com.example.evaluaciont1_vl.datos.NotasAlumnoAsig;
+
+import java.sql.Time;
+
 public class PantallaRegistro extends AppCompatActivity implements View.OnClickListener {
 
     Button btnSeleccionarAlumno, btnSeleccionarAsignatura, btnCalcularNota, btnGuardarDatos, btnLimpiarDatos;
     EditText etAlumno, etAsignatura, etNotaExamen, etNotaActividades, etNotaFinal;
+
+    private String SUCCESSFULL_SAVE = "Se han guardado los datos correctamente";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +54,8 @@ public class PantallaRegistro extends AppCompatActivity implements View.OnClickL
             i = new Intent(this, PantallaSeleccionAlumno.class);
             startActivityForResult(i, 1);
         }else if(v.getId() == R.id.btnAsignatura){
-            Toast.makeText(this, "Boton no implementado", Toast.LENGTH_LONG).show();
+            i = new Intent(this, PantallaSeleccionAsignatura.class);
+            startActivityForResult(i, 2);
         }else if(v.getId() == R.id.btnCalcular){
             int notaExamen = Integer.parseInt(etNotaExamen.getText().toString()),
                     notaActividades = Integer.parseInt(etNotaActividades.getText().toString());
@@ -62,8 +70,8 @@ public class PantallaRegistro extends AppCompatActivity implements View.OnClickL
 
             btnCalcularNota.setEnabled(false);
 
-        }else if(v.getId() == R.id.btnGuardar){
-            Toast.makeText(this, "Boton no implementado", Toast.LENGTH_LONG).show();
+        }else if(v.getId() == R.id.btnGuardar) {
+            FileManager.modificarNota(new NotasAlumnoAsig(etAlumno.getText().toString(), etAsignatura.getText().toString(),  Double.parseDouble(etNotaExamen.getText().toString()), Double.parseDouble(etNotaActividades.getText().toString()), Double.parseDouble(etNotaFinal.getText().toString())));
         }else if(v.getId() == R.id.btnLimpiar){
             etAlumno.getText().clear();
             etAsignatura.getText().clear();
@@ -72,14 +80,24 @@ public class PantallaRegistro extends AppCompatActivity implements View.OnClickL
             etNotaFinal.getText().clear();
 
             btnCalcularNota.setEnabled(true);
+            btnSeleccionarAsignatura.setEnabled(true);
+            btnSeleccionarAlumno.setEnabled(true);
         }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == RESULT_OK){
-            etAlumno.setText(data.getStringExtra("alumno"));
+        if(requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                etAlumno.setText(data.getStringExtra("alumno"));
+                btnSeleccionarAlumno.setEnabled(false);
+            }
+        }else if(requestCode == 2) {
+            if(resultCode == RESULT_OK){
+                etAsignatura.setText(data.getStringExtra("asignatura"));
+                btnSeleccionarAsignatura.setEnabled(false);
+            }
         }
     }
 }
