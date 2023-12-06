@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/alumnosMain"
+    android:orientation="vertical"
     tools:context=".PantallaSeleccionAlumno">
 
     <TextView
@@ -39,6 +40,8 @@
         android:layout_margin="@dimen/margen"
         android:textAlignment="center"
         android:layout_above="@id/llBotonesAlumno"/>
+
+
 
     <LinearLayout
         android:id="@+id/llBotonesAlumno"

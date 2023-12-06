@@ -4,12 +4,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
+    android:padding="@dimen/margen"
+
     tools:context=".PantallaConsulta">
 
     <TextView
+        android:id="@+id/tvTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pantalla Consulta"
-        android:layout_centerInParent="true"/>
+        android:text="@string/tv_CosultaNotas"
+        android:textSize="@dimen/tituloConsulta"
+        android:textColor="@color/red"
+        android:textStyle="bold"/>
+
+    <LinearLayout
+        android:id="@+id/llConsulta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/tvTitulo"
+        android:layout_margin="@dimen/margen">
+
+        <EditText
+            android:id="@+id/etConsultaAlumno"
+            android:layout_width="@dimen/width_editText"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvTitulo"
+            android:enabled="false"
+            android:textSize="@dimen/margen"
+            />
+        <Button
+            android:id="@+id/btnNotasConsulta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_alumno"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/flContenedor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/llConsulta"
+        android:layout_marginTop="@dimen/margen"
+        android:orientation="vertical" />
+
+
+
 
 </RelativeLayout>

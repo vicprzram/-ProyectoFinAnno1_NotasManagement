@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.NotaFragmento">
+
+   <LinearLayout
+      android:id="@+id/llNotas"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical">
+   <TextView
+       android:id="@+id/flListaNotas"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:textSize="@dimen/tam_lista_notas"
+
+       />
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/flNotas1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/tam_lista_notas" />
+            <FrameLayout
+                android:id="@+id/flNotas2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/tam_lista_notas"/>
+            <FrameLayout
+                android:id="@+id/flNotas3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/tam_lista_notas"/>
+            <FrameLayout
+                android:id="@+id/flNotas4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/tam_lista_notas"/>
+            <FrameLayout
+                android:id="@+id/flNotas5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/tam_lista_notas"/>
+            <FrameLayout
+                android:id="@+id/flNotas6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/tam_lista_notas"/>
+            <FrameLayout
+                android:id="@+id/flNotas7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/tam_lista_notas"/>
+         </LinearLayout>
+
+      </LinearLayout>
+
+
+
+
+</FrameLayout>

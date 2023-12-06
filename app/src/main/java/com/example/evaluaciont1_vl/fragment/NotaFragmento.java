@@ -1,0 +1,73 @@
+package com.example.evaluaciont1_vl.fragment;
+
+import android.annotation.SuppressLint;
+import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+
+import com.example.evaluaciont1_vl.R;
+
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link NotaFragmento#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class NotaFragmento extends Fragment {
+
+    private static final String ARG_ASIGNATURA = "asignatura";
+    private static final String ARG_NOTA = "nota";
+
+    private String asignatura;
+    private String nota;
+
+    TextView tvNota;
+
+    public NotaFragmento() {
+    }
+
+
+
+
+    public static NotaFragmento newInstance(String asignatura, String nota) {
+        NotaFragmento fragment = new NotaFragmento();
+        Bundle args = new Bundle();
+        args.putString(ARG_ASIGNATURA, asignatura);
+        args.putString(ARG_NOTA, nota);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            asignatura = getArguments().getString(ARG_ASIGNATURA);
+            nota = getArguments().getString(ARG_NOTA);
+        }
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+//Siete FrameLayout
+        View v = inflater.inflate(R.layout.fragment_nota_fragmento, container, false);
+        FrameLayout flNota1 = v.findViewById(R.id.flNotas1);
+        FrameLayout flNota2 = v.findViewById(R.id.flNotas2);
+        FrameLayout flNota3 = v.findViewById(R.id.flNotas3);
+        FrameLayout flNota4 = v.findViewById(R.id.flNotas4);
+        FrameLayout flNota5 = v.findViewById(R.id.flNotas5);
+        FrameLayout flNota6 = v.findViewById(R.id.flNotas6);
+        FrameLayout flNota7 = v.findViewById(R.id.flNotas7);
+
+        tvNota = v.findViewById(R.id.flListaNotas);
+        tvNota.setText(String.format(getString(R.string.tv_consultaNota_asig),asignatura,nota));
+
+        return v;
+    }
+}

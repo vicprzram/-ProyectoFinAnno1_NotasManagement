@@ -13,6 +13,11 @@ import com.example.evaluaciont1_vl.datos.FileManager;
 import com.example.evaluaciont1_vl.datos.NotasAlumnoAsig;
 
 public class PantallaRegistro extends AppCompatActivity implements View.OnClickListener {
+    private static final String CLAVE_ALUMNO_SELECCIONADO = "alumno_seleccionado";
+    private static final String CLAVE_ASIGNATURA_SELECCIONADA = "asignatura_seleccionada";
+    private static final String CLAVE_NOTA_EXAMEN ="nota_examen" ;
+    private static final String CLAVE_NOTA_ACT = "nota_actividades";
+    private static final String CLAVE_NOTA_FINAL = "nota_final" ;
 
     Button btnSeleccionarAlumno, btnSeleccionarAsignatura, btnCalcularNota, btnGuardarDatos, btnLimpiarDatos;
     EditText etAlumno, etAsignatura, etNotaExamen, etNotaActividades, etNotaFinal;
@@ -41,7 +46,27 @@ public class PantallaRegistro extends AppCompatActivity implements View.OnClickL
         etNotaExamen = findViewById(R.id.etNotaExamen);
         etNotaActividades = findViewById(R.id.etNotaActividades);
         etNotaFinal = findViewById(R.id.etCalcular);
+
+        if (savedInstanceState != null) {
+            // Restaurar el estado si hay datos guardados
+            etAlumno.setText(savedInstanceState.getString(CLAVE_ALUMNO_SELECCIONADO));
+            etAsignatura.setText(savedInstanceState.getString(CLAVE_ASIGNATURA_SELECCIONADA));
+            etNotaExamen.setText(savedInstanceState.getString(CLAVE_NOTA_EXAMEN));
+            etNotaActividades.setText(savedInstanceState.getString(CLAVE_NOTA_ACT));;
+            etNotaFinal.setText(savedInstanceState.getString(CLAVE_NOTA_FINAL));
+        }
     }
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // Guardar el estado actual
+        outState.putString(CLAVE_ALUMNO_SELECCIONADO, etAlumno.getText().toString());
+        outState.putString(CLAVE_ASIGNATURA_SELECCIONADA, etAsignatura.getText().toString());
+        outState.putString(CLAVE_NOTA_EXAMEN,etNotaExamen.getText().toString());
+        outState.putString(CLAVE_NOTA_ACT, etNotaActividades.getText().toString());
+        outState.putString(CLAVE_NOTA_FINAL,etNotaFinal.getText().toString());
+    }
+
 
     @Override
     public void onClick(View v) {
@@ -80,7 +105,10 @@ public class PantallaRegistro extends AppCompatActivity implements View.OnClickL
             btnSeleccionarAsignatura.setEnabled(true);
             btnSeleccionarAlumno.setEnabled(true);
         }
+
+
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
