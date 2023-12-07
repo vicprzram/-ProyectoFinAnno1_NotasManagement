@@ -11,12 +11,16 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+
 import com.example.evaluaciont1_vl.datos.Utilities;
 
 public class PantallaSeleccionAsignatura extends AppCompatActivity implements View.OnClickListener {
 
     private EditText etAsignaturaPestanna;
     private Button btnAceptar, btnCancelar;
+    private static final String CLAVE_ASIGNATURA_SELECCIONADA = "asignatura_seleccionada";
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,16 @@ public class PantallaSeleccionAsignatura extends AppCompatActivity implements Vi
             button.setOnClickListener(this);
             ll.addView(button);
         }
+
+        if (savedInstanceState != null) {
+            etAsignaturaPestanna.setText(savedInstanceState.getString(CLAVE_ASIGNATURA_SELECCIONADA));
+        }
+    }
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(CLAVE_ASIGNATURA_SELECCIONADA, etAsignaturaPestanna.getText().toString());
+
     }
 
 

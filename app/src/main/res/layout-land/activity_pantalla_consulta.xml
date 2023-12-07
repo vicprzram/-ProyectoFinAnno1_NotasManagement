@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:orientation="vertical"
     android:padding="@dimen/margen"
 
     tools:context=".PantallaConsulta">
@@ -24,21 +24,26 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_below="@id/tvTitulo"
-        android:layout_margin="@dimen/margen">
+        >
 
         <EditText
             android:id="@+id/etConsultaAlumno"
-            android:layout_width="@dimen/width_editText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:layout_below="@id/tvTitulo"
+            android:textAlignment="center"
             android:enabled="false"
+            android:layout_margin="@dimen/mitad_margen"
             android:textSize="@dimen/margen"
             />
         <Button
             android:id="@+id/btnNotasConsulta"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/btn_alumno"/>
+            android:layout_weight="4"
+            android:text="@string/btn_alumno"
+           />
 
     </LinearLayout>
 
@@ -53,4 +58,4 @@
 
 
 
-</RelativeLayout>
+</LinearLayout>

@@ -1,53 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PantallaSeleccionAsignatura">
+    android:id="@+id/alumnosMain"
+    android:orientation="vertical"
+    android:columnCount="2"
+    tools:context=".PantallaSeleccionAlumno">
 
     <TextView
-        android:id="@+id/tvTituloAsignatura"
+        android:id="@+id/tvTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margen"
         android:layout_marginTop="@dimen/margen"
-        android:text="@string/tv_asignatura"
+        android:text="@string/tv_alumnos"
         android:textSize="@dimen/titulos"
         android:textColor="@color/red"
         android:textStyle="bold"/>
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1">
     <LinearLayout
-        android:id="@+id/llAsignatura"
+        android:id="@+id/llAlumnos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_below="@id/tvTituloAsignatura"
-        android:layout_margin="@dimen/margen"
-        android:paddingTop="0dp"
-        android:paddingBottom="0dp"
-        android:weightSum="7">
+        android:layout_below="@id/tvTitulo"
+        android:layout_weight="1"
+        android:weightSum="22">
 
     </LinearLayout>
+</ScrollView>
 
     <EditText
-        android:id="@+id/etAsignaturaPestanna"
+        android:id="@+id/etAlumnoPestanna"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:enabled="false"
         android:layout_margin="@dimen/margen"
         android:textAlignment="center"
-        android:layout_above="@id/llBotonesAsignatura"/>
+        android:layout_above="@id/llBotonesAlumno"/>
+
+
 
     <LinearLayout
-        android:id="@+id/llBotonesAsignatura"
+        android:id="@+id/llBotonesAlumno"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_alignParentBottom="true">
 
         <Button
-            android:id="@+id/btnAceptarAsignatura"
+            android:id="@+id/btnAceptar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -55,7 +62,7 @@
             android:layout_margin="@dimen/mitad_margen"/>
 
         <Button
-            android:id="@+id/btnCancelarAsignatura"
+            android:id="@+id/btnCancelar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -64,4 +71,4 @@
 
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

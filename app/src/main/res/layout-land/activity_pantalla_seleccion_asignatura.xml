@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".PantallaSeleccionAsignatura">
 
     <TextView
@@ -17,6 +18,7 @@
         android:textColor="@color/red"
         android:textStyle="bold"/>
 
+
     <LinearLayout
         android:id="@+id/llAsignatura"
         android:layout_width="wrap_content"
@@ -25,10 +27,12 @@
         android:layout_below="@id/tvTituloAsignatura"
         android:layout_margin="@dimen/margen"
         android:paddingTop="0dp"
+        android:layout_weight="1"
         android:paddingBottom="0dp"
         android:weightSum="7">
 
     </LinearLayout>
+
 
     <EditText
         android:id="@+id/etAsignaturaPestanna"
@@ -44,7 +48,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        >
 
         <Button
             android:id="@+id/btnAceptarAsignatura"
@@ -64,4 +69,4 @@
 
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

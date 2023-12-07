@@ -22,14 +22,13 @@ public class FileManager {
     private static final String PATH_OUT = "/data/data/com.example.evaluaciont1_vl/files/database/database.dat";
     private static final String ERROR_FILE = "ERROR: No se ha encontrado el archivo: ";
 
-    public static boolean fileExists(){
+    public static boolean fileExists() {
         return new File(PATH_OUT).exists();
     }
 
 
-
     public static void writeFile(NotasAlumnoAsig n) {
-        try(RandomAccessFile raf = new RandomAccessFile(PATH_OUT, "rw")){
+        try (RandomAccessFile raf = new RandomAccessFile(PATH_OUT, "rw")) {
             raf.seek(raf.length());
             StringBuffer sb = new StringBuffer(n.getNombre());
             sb.setLength(BYTE_NOMBRE);
@@ -43,31 +42,31 @@ public class FileManager {
             raf.writeDouble(n.getNotaActividades());
             raf.writeDouble(n.getNotaFinal());
 
-        }catch(FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             Log.e("FileNotFoundException", ERROR_FILE + PATH_OUT);
-        }catch(IOException e){
+        } catch (IOException e) {
             Log.e("IOException", e.getMessage());
         }
     }
 
-    public static ArrayList<NotasAlumnoAsig> readFile(){
+    public static ArrayList<NotasAlumnoAsig> readFile() {
         ArrayList<NotasAlumnoAsig> listado = new ArrayList<NotasAlumnoAsig>();
-        try(RandomAccessFile raf = new RandomAccessFile(PATH_OUT, "rw")){
+        try (RandomAccessFile raf = new RandomAccessFile(PATH_OUT, "rw")) {
             StringBuffer sb;
             String nombre, asignatura;
             double notaExamen, notaFinal, notaActividades;
 
             raf.seek(0);
-            while(raf.getFilePointer() < raf.length()){
+            while (raf.getFilePointer() < raf.length()) {
                 sb = new StringBuffer();
-                for(int i = 0; i < BYTE_NOMBRE; i++){
+                for (int i = 0; i < BYTE_NOMBRE; i++) {
                     sb.append(raf.readChar());
                 }
                 sb.setLength(BYTE_NOMBRE);
                 nombre = sb.toString();
 
                 sb = new StringBuffer();
-                for(int i = 0; i < BYTE_ASIGNATURA; i++){
+                for (int i = 0; i < BYTE_ASIGNATURA; i++) {
                     sb.append(raf.readChar());
                 }
                 sb.setLength(BYTE_ASIGNATURA);
@@ -80,17 +79,17 @@ public class FileManager {
                 listado.add(new NotasAlumnoAsig(nombre, asignatura, notaExamen, notaActividades, notaFinal));
             }
 
-        }catch(FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             Log.e("FileNotFoundException", ERROR_FILE + PATH_OUT);
-        }catch(IOException e){
+        } catch (IOException e) {
             Log.e("IOException", e.getMessage());
         }
         return listado;
     }
 
-    public static String comprobacion(){
+    public static String comprobacion() {
         String a = "";
-        try(RandomAccessFile raf = new RandomAccessFile(PATH_OUT, "rw")){
+        try (RandomAccessFile raf = new RandomAccessFile(PATH_OUT, "rw")) {
             StringBuffer sb;
             String nombre, asignatura;
             double notaE, notaA, notaF;
@@ -98,16 +97,16 @@ public class FileManager {
 
             raf.seek(0);
 
-            while(raf.getFilePointer() < raf.length()){
+            while (raf.getFilePointer() < raf.length()) {
                 nombre = "";
 
-                for(int i = 0; i < BYTE_NOMBRE; i++){
+                for (int i = 0; i < BYTE_NOMBRE; i++) {
                     nombre += raf.readChar();
                 }
 
                 asignatura = "";
 
-                for(int i = 0; i < BYTE_ASIGNATURA; i++){
+                for (int i = 0; i < BYTE_ASIGNATURA; i++) {
                     asignatura += raf.readChar();
                 }
 
@@ -115,54 +114,57 @@ public class FileManager {
                 notaA = raf.readDouble();
                 notaF = raf.readDouble();
 
-                if(nombre.trim().equals("Ángel Zhang") && (asignatura.trim().equals("IOS"))){
+                if (nombre.trim().equals("Ángel Zhang") && (asignatura.trim().equals("IOS"))) {
+
+
                     a += nombre + " " + asignatura + " " + notaE + " " + notaA + " " + notaF;
                     break;
                 }
             }
 
 
-
-        }catch(FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             Log.e("FileNotFoundException", ERROR_FILE + PATH_OUT);
-        }catch(IOException e){
+        } catch (IOException e) {
             Log.e("IOException", e.getMessage());
         }
         return a;
     }
 
-    public static void modificarNota(NotasAlumnoAsig n){
-        try(RandomAccessFile raf = new RandomAccessFile(PATH_OUT, "rw")){
+
+    public static void modificarNota(NotasAlumnoAsig n) {
+        try (RandomAccessFile raf = new RandomAccessFile(PATH_OUT, "rw")) {
             Log.e("Entrar", n.getNombre());
             raf.seek(0);
 
             String nombre, asignatura;
 
-            while(raf.getFilePointer() < raf.length()){
+            while (raf.getFilePointer() < raf.length()) {
                 nombre = "";
                 asignatura = "";
 
-                for(int i = 0; i < BYTE_NOMBRE; i++){
+
+                for (int i = 0; i < BYTE_NOMBRE; i++) {
                     nombre += raf.readChar();
                 }
 
-                for(int i = 0; i < BYTE_ASIGNATURA; i++){
+                for (int i = 0; i < BYTE_ASIGNATURA; i++) {
                     asignatura += raf.readChar();
                 }
 
                 Log.e("entre", nombre.trim());
-                if(nombre.trim().equals(n.getNombre()) && asignatura.trim().equals(n.getAsignatura())){
+                if (nombre.trim().equals(n.getNombre()) && asignatura.trim().equals(n.getAsignatura())) {
                     raf.writeDouble(n.getNotaExamen());
                     raf.writeDouble(n.getNotaActividades());
                     raf.writeDouble(n.getNotaFinal());
                     raf.seek(raf.length());
-                }else{
-                    raf.seek(raf.getFilePointer() + (8*3)); // Se le suma los 3 espacios de Doubles
+                } else {
+                    raf.seek(raf.getFilePointer() + (8 * 3)); // Se le suma los 3 espacios de Doubles
                 }
             }
-        }catch(FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             Log.e("FileNotFoundException", ERROR_FILE + PATH_OUT);
-        }catch(IOException e){
+        } catch (IOException e) {
             Log.e("IOException", "IOEXCEPTIOn");
         }
     }

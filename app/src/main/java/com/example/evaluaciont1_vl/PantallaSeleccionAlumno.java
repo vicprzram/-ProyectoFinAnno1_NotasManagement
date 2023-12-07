@@ -2,6 +2,7 @@ package com.example.evaluaciont1_vl;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,10 +17,16 @@ import android.widget.Toast;
 
 import com.example.evaluaciont1_vl.datos.Utilities;
 
+import java.util.List;
+
 public class PantallaSeleccionAlumno extends AppCompatActivity implements View.OnClickListener {
+
+    private static final String CALVE_ALUMNO_SELECCIONADO = "alumno_seleccionado";
 
     private EditText etAlumnoPestanna;
     private Button btnAceptar, btnCancelar;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +41,13 @@ public class PantallaSeleccionAlumno extends AppCompatActivity implements View.O
 
         etAlumnoPestanna = findViewById(R.id.etAlumnoPestanna);
 
+
+
+
         LinearLayout ll = findViewById(R.id.llAlumnos);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
-        lp.weight = 3;
+        lp.weight = 1;
 
         for(String s : Utilities.getAlumnos()){
             Button button = new Button(this);
@@ -53,6 +63,20 @@ public class PantallaSeleccionAlumno extends AppCompatActivity implements View.O
             ll.addView(button);
         }
 
+        if (savedInstanceState != null) {
+            etAlumnoPestanna.setText(savedInstanceState.getString(CALVE_ALUMNO_SELECCIONADO));
+
+        }
+
+
+    }
+
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // Guardar el estado actual
+        outState.putString(CALVE_ALUMNO_SELECCIONADO, etAlumnoPestanna.getText().toString());
     }
 
     @Override

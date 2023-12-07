@@ -16,10 +16,17 @@
     <string name="btn_calcular">Calcular nota</string>
     <string name="btn_guardarDatos">Guardar datos</string>
     <string name="btn_limpiarDatos">Limpiar datos</string>
-    <string name="erro_no_data">Se debe seleccionar un alumno</string>
+    <string name="erro_no_data">Se debe seleccionar alguna opcion</string>
 
     <!-- Pantalla de alumnos -->
-    <string name="tv_alumnos">Selección de Alumno</string>
+    <string name="tv_asignatura">Selección de Asignatura</string>
     <string name="btn_cancelar">Cancelar</string>
     <string name="btn_aceptar">Aceptar</string>
+
+    <!-- Pantalla de Consulta Notas -->
+    <string name="btn_notasConsulta">Seleccionar alumno</string>
+    <string name="tv_CosultaNotas">Consulta de Notas por Alumno</string>
+    <string name="tv_consultaNota_asig">%1$s %2$d</string>
+    <string name="no_seleccionado">Selección de alumno cancelada</string>
+    <string name="tv_alumnos">Selección de Alumno</string>
 </resources>
