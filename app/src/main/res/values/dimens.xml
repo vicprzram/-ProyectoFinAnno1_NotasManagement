@@ -3,7 +3,7 @@
     <dimen name="margen">16dp</dimen>
     <dimen name="mitad_margen">8dp</dimen>
     <dimen name="tamanno_imagen">200dp</dimen>
-    <dimen name="titulos">30dp</dimen>
+    <dimen name="titulos">26sp</dimen>
     <dimen name="width_editText">200dp</dimen>
     <dimen name="width_editText_pequennos">180dp</dimen>
     <dimen name="btnCalcular">110dp</dimen>
@@ -11,4 +11,7 @@
     <dimen name="btnAlumnos">12sp</dimen>
     <dimen name="tituloConsulta">26sp</dimen>
     <dimen name="tam_lista_notas">16sp</dimen>
+    <dimen name="margen_right">16dp</dimen>
+    <dimen name="margen_left">16dp</dimen>
+    <dimen name="margen_top">13dp</dimen>
 </resources>

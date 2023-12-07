@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.evaluaciont1_vl.datos.FileManager;
@@ -19,8 +20,10 @@ public class PantallaRegistro extends AppCompatActivity implements View.OnClickL
     private static final String CLAVE_NOTA_ACT = "nota_actividades";
     private static final String CLAVE_NOTA_FINAL = "nota_final" ;
 
+
     Button btnSeleccionarAlumno, btnSeleccionarAsignatura, btnCalcularNota, btnGuardarDatos, btnLimpiarDatos;
     EditText etAlumno, etAsignatura, etNotaExamen, etNotaActividades, etNotaFinal;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,9 @@ public class PantallaRegistro extends AppCompatActivity implements View.OnClickL
         etNotaActividades = findViewById(R.id.etNotaActividades);
         etNotaFinal = findViewById(R.id.etCalcular);
 
+
+
+
         if (savedInstanceState != null) {
             // Restaurar el estado si hay datos guardados
             etAlumno.setText(savedInstanceState.getString(CLAVE_ALUMNO_SELECCIONADO));
@@ -54,6 +60,7 @@ public class PantallaRegistro extends AppCompatActivity implements View.OnClickL
             etNotaExamen.setText(savedInstanceState.getString(CLAVE_NOTA_EXAMEN));
             etNotaActividades.setText(savedInstanceState.getString(CLAVE_NOTA_ACT));;
             etNotaFinal.setText(savedInstanceState.getString(CLAVE_NOTA_FINAL));
+
         }
     }
     @Override
@@ -65,6 +72,7 @@ public class PantallaRegistro extends AppCompatActivity implements View.OnClickL
         outState.putString(CLAVE_NOTA_EXAMEN,etNotaExamen.getText().toString());
         outState.putString(CLAVE_NOTA_ACT, etNotaActividades.getText().toString());
         outState.putString(CLAVE_NOTA_FINAL,etNotaFinal.getText().toString());
+
     }
 
 

@@ -27,6 +27,7 @@ public class PantallaSeleccionAlumno extends AppCompatActivity implements View.O
     private Button btnAceptar, btnCancelar;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,10 +43,11 @@ public class PantallaSeleccionAlumno extends AppCompatActivity implements View.O
 
 
 
+
         LinearLayout ll = findViewById(R.id.llAlumnos);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
-        lp.weight = 3;
+        lp.weight = 1;
 
         for(String s : Utilities.getAlumnos()){
             Button button = new Button(this);
