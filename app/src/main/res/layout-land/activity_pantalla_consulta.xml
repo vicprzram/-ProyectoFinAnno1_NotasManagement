@@ -48,12 +48,73 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/flContenedor"
+        android:id="@+id/llContendor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/llConsulta"
-        android:layout_marginTop="@dimen/margen"
-        android:orientation="vertical" />
+        android:orientation="horizontal"
+        android:layout_below="@id/tvTituloAsignatura"
+        android:layout_margin="@dimen/margen"
+        android:paddingTop="0dp"
+        android:layout_weight="1"
+        android:paddingBottom="0dp"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:id="@+id/llContenedorPrimeros"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:weightSum="4">
+
+            <FrameLayout
+                android:id="@+id/flNotas1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <FrameLayout
+                android:id="@+id/flNotas3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <FrameLayout
+                android:id="@+id/flNotas5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <FrameLayout
+                android:id="@+id/flNotas7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llContendorSegundos"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="4"
+            android:layout_weight="1">
+
+            <FrameLayout
+                android:id="@+id/flNotas2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <FrameLayout
+                android:id="@+id/flNotas4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <FrameLayout
+                android:id="@+id/flNotas6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 
 

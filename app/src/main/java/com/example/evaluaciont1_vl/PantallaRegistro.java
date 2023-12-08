@@ -96,19 +96,11 @@ public class PantallaRegistro extends AppCompatActivity implements View.OnClickL
             if(etNotaExamen.getText().toString().isEmpty() || etNotaActividades.getText().toString().isEmpty()){
                 Toast.makeText(this, NO_DATA, Toast.LENGTH_LONG).show();
             }else{
+                double notaExamen = Double.parseDouble(etNotaExamen.getText().toString()),
+                        notaActividades = Double.parseDouble(etNotaActividades.getText().toString());
 
-                int notaExamen = Integer.parseInt(etNotaExamen.getText().toString()),
-                        notaActividades = Integer.parseInt(etNotaActividades.getText().toString());
-
-                if((notaExamen <= 10 && notaExamen > 0) && (notaActividades <= 10 && notaActividades > 0)) {
-                    if (notaExamen >= 4 && notaActividades >= 7) {
-                        etNotaFinal.setText("" + ((notaExamen * 0.6) + (notaActividades * 0.4)));
-                    } else if (notaExamen < 4) {
-                        etNotaFinal.setText("" + notaExamen);
-                    } else if (notaActividades < 7) {
-                        etNotaFinal.setText("" + ((notaExamen * 0.7) + (notaActividades * 0.3)));
-                    }
-
+                if((notaExamen <= 10) && (notaExamen > 0) && (notaActividades <= 10 && notaActividades > 0)){
+                    etNotaFinal.setText("" + new NotasAlumnoAsig(notaExamen, notaActividades).calcularNotaFinal());
                     btnCalcularNota.setEnabled(false);
                 }else{
                     Toast.makeText(this, BAD_VALUES, Toast.LENGTH_LONG).show();

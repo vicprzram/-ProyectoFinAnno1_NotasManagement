@@ -10,6 +10,11 @@ public class NotasAlumnoAsig implements Serializable { // Se requiere para poder
     private double notaActividades;
     private double notaFinal;
 
+    public NotasAlumnoAsig(double notaExamen, double notaActividades){
+        this.notaExamen = notaExamen;
+        this.notaActividades = notaActividades;
+    }
+
     public NotasAlumnoAsig(String nombre, String asignatura, double notaExamen, double notaActividades, double notaFinal){
         this.nombre = nombre;
         this.asignatura = asignatura;
@@ -36,5 +41,16 @@ public class NotasAlumnoAsig implements Serializable { // Se requiere para poder
 
     public double getNotaActividades(){
         return this.notaActividades;
+    }
+
+    public double calcularNotaFinal(){
+        if (notaExamen >= 4 && notaActividades >= 7) {
+            this.notaFinal = (notaExamen * 0.6) + (notaActividades * 0.4);
+        } else if (notaExamen < 4) {
+            this.notaFinal = notaExamen;
+        } else if (notaActividades < 7) {
+            this.notaFinal = (notaExamen * 0.7) + (notaActividades * 0.3);
+        }
+        return this.notaFinal;
     }
 }

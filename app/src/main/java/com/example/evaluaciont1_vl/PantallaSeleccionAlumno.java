@@ -90,7 +90,7 @@ public class PantallaSeleccionAlumno extends AppCompatActivity implements View.O
                     lP.addView(button);
                 }
 
-                for(int i = 21; i >= 11; i--){
+                for(int i = 11; i < 22; i++){
                     Button button = new Button(this);
 
                     button.setLayoutParams(lp);

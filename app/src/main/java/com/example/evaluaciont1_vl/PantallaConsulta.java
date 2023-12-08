@@ -104,16 +104,6 @@ public class PantallaConsulta extends AppCompatActivity implements View.OnClickL
             agregarFragmento(notaFragmento, contador);
             contador++;
         }
-
-
-        /*for (NotasAlumnoAsig nota : notas) {
-
-            if (nota.getNombre().equals(alumnoSeleccionado) && nota.getNotaFinal() != 0) {
-                Log.e("TAG", "Asignatura: " + nota.getAsignatura() + ", Nota: " + nota.getNotaFinal());
-                NotaFragmento notaFragment = NotaFragmento.newInstance(nota.getAsignatura(), nota.getNotaFinal());
-                agregarFragmento(notaFragment);
-            }
-        }*/
     }
 
     private void agregarFragmento(NotaFragmento notaFragment, int pos) {//agregamos fragmento dinamico al LinearLayout
