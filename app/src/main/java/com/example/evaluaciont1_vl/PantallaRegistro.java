@@ -17,11 +17,12 @@ import com.example.evaluaciont1_vl.datos.NotasAlumnoAsig;
 import java.sql.Time;
 
 public class PantallaRegistro extends AppCompatActivity implements View.OnClickListener {
-    private static final String CLAVE_ALUMNO_SELECCIONADO = "alumno_seleccionado";
-    private static final String CLAVE_ASIGNATURA_SELECCIONADA = "asignatura_seleccionada";
+    private static final String CLAVE_ALUMNO_SELECCIONADO = "alumno";
+    private static final String CLAVE_ASIGNATURA_SELECCIONADA = "asignatura";
     private static final String CLAVE_NOTA_EXAMEN ="nota_examen" ;
     private static final String CLAVE_NOTA_ACT = "nota_actividades";
     private static final String CLAVE_NOTA_FINAL = "nota_final" ;
+    private static final String BACK = "No se seleccionado ningun ";
 
 
     Button btnSeleccionarAlumno, btnSeleccionarAsignatura, btnCalcularNota, btnGuardarDatos, btnLimpiarDatos;
@@ -99,7 +100,7 @@ public class PantallaRegistro extends AppCompatActivity implements View.OnClickL
                 double notaExamen = Double.parseDouble(etNotaExamen.getText().toString()),
                         notaActividades = Double.parseDouble(etNotaActividades.getText().toString());
 
-                if((notaExamen <= 10) && (notaExamen > 0) && (notaActividades <= 10 && notaActividades > 0)){
+                if((notaExamen <= 10) && (notaExamen >= 0) && (notaActividades <= 10 && notaActividades >= 0)){
                     etNotaFinal.setText("" + new NotasAlumnoAsig(notaExamen, notaActividades).calcularNotaFinal());
                     btnCalcularNota.setEnabled(false);
                 }else{
@@ -154,13 +155,17 @@ public class PantallaRegistro extends AppCompatActivity implements View.OnClickL
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 1) {
             if (resultCode == RESULT_OK) {
-                etAlumno.setText(data.getStringExtra("alumno"));
+                etAlumno.setText(data.getStringExtra(CLAVE_ALUMNO_SELECCIONADO));
                 btnSeleccionarAlumno.setEnabled(false);
+            }else if(resultCode == RESULT_CANCELED){
+                Toast.makeText(this, BACK + CLAVE_ALUMNO_SELECCIONADO, Toast.LENGTH_LONG).show();
             }
         }else if(requestCode == 2) {
             if(resultCode == RESULT_OK){
-                etAsignatura.setText(data.getStringExtra("asignatura"));
+                etAsignatura.setText(data.getStringExtra(CLAVE_ASIGNATURA_SELECCIONADA));
                 btnSeleccionarAsignatura.setEnabled(false);
+            }else if(resultCode == RESULT_CANCELED){
+                Toast.makeText(this, BACK + CLAVE_ASIGNATURA_SELECCIONADA, Toast.LENGTH_LONG).show();
             }
         }
     }
