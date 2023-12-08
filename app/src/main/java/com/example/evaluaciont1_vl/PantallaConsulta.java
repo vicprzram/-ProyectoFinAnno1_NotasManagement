@@ -20,6 +20,8 @@ import com.example.evaluaciont1_vl.datos.NotasAlumnoAsig;
 import com.example.evaluaciont1_vl.fragment.NotaFragmento;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PantallaConsulta extends AppCompatActivity implements View.OnClickListener {
     private static final String BTN_LIMPIAR = "Limpiar datos";
@@ -96,24 +98,62 @@ public class PantallaConsulta extends AppCompatActivity implements View.OnClickL
 
     private void mostrarNotas(String alumnoSeleccionado) {
 
-        ArrayList<NotasAlumnoAsig> notas = FileManager.readFile();
+        int contador = 1;
+        Map<String, Double> mapa = FileManager.readAlumno(alumnoSeleccionado);
         limpiarFragmentos();
 
-        for (NotasAlumnoAsig nota : notas) {
+        if(!mapa.isEmpty()) {
+            for (Map.Entry<String, Double> entry : mapa.entrySet()) {
+                Log.e("Entre", entry.getKey() + " " + entry.getValue());
+                NotaFragmento notaFragmento = NotaFragmento.newInstance(entry.getKey(), entry.getValue());
+                agregarFragmento(notaFragmento, contador);
+                contador++;
+            }
+        }else{
+            Log.e("MAPA", "MAPA vacio");
+        }
+
+        /*for (NotasAlumnoAsig nota : notas) {
 
             if (nota.getNombre().equals(alumnoSeleccionado) && nota.getNotaFinal() != 0) {
                 Log.e("TAG", "Asignatura: " + nota.getAsignatura() + ", Nota: " + nota.getNotaFinal());
-                NotaFragmento notaFragment = NotaFragmento.newInstance(nota.getAsignatura(), Double.valueOf(nota.getNotaFinal()));
+                NotaFragmento notaFragment = NotaFragmento.newInstance(nota.getAsignatura(), nota.getNotaFinal());
                 agregarFragmento(notaFragment);
             }
-        }
+        }*/
     }
 
-    private void agregarFragmento(NotaFragmento notaFragment) {//agregamos fragmento dinamico al LinearLayout
+    private void agregarFragmento(NotaFragmento notaFragment, int pos) {//agregamos fragmento dinamico al LinearLayout
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
 
-        ft.add(R.id.flContenedor, notaFragment);
+        switch (pos){
+            case 1:
+                ft.add(R.id.flNotas1, notaFragment);
+                break;
+            case 2:
+                ft.add(R.id.flNotas2, notaFragment);
+                break;
+            case 3:
+                ft.add(R.id.flNotas3, notaFragment);
+                break;
+
+            case 4:
+                ft.add(R.id.flNotas4, notaFragment);
+                break;
+
+            case 5:
+                ft.add(R.id.flNotas5, notaFragment);
+                break;
+
+            case 6:
+                ft.add(R.id.flNotas6, notaFragment);
+                break;
+
+            case 7:
+                ft.add(R.id.flNotas7, notaFragment);
+                break;
+        }
         ft.addToBackStack(null);// Añade el fragmento al back stack para poder retroceder
         ft.commit();// Commit la transacción
 

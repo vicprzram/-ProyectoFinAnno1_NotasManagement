@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 public class FileManager {
@@ -20,9 +22,11 @@ public class FileManager {
     private static final int BYTE_ASIGNATURA = 4;
     private static final int BYTE_MAX = (BYTE_NOMBRE * 2) + (BYTE_ASIGNATURA * 2) + 8 + 8 + 8;
     private static final String PATH_OUT = "/data/data/com.example.evaluaciont1_vl/files/database/database.dat";
+    private static final String DIR = "/data/data/com.example.evaluaciont1_vl/files/database";
     private static final String ERROR_FILE = "ERROR: No se ha encontrado el archivo: ";
 
     public static boolean fileExists() {
+        new File(PATH_OUT).mkdirs();
         return new File(PATH_OUT).exists();
     }
 
@@ -87,51 +91,6 @@ public class FileManager {
         return listado;
     }
 
-    public static String comprobacion() {
-        String a = "";
-        try (RandomAccessFile raf = new RandomAccessFile(PATH_OUT, "rw")) {
-            StringBuffer sb;
-            String nombre, asignatura;
-            double notaE, notaA, notaF;
-
-
-            raf.seek(0);
-
-            while (raf.getFilePointer() < raf.length()) {
-                nombre = "";
-
-                for (int i = 0; i < BYTE_NOMBRE; i++) {
-                    nombre += raf.readChar();
-                }
-
-                asignatura = "";
-
-                for (int i = 0; i < BYTE_ASIGNATURA; i++) {
-                    asignatura += raf.readChar();
-                }
-
-                notaE = raf.readDouble();
-                notaA = raf.readDouble();
-                notaF = raf.readDouble();
-
-                if (nombre.trim().equals("Ángel Zhang") && (asignatura.trim().equals("IOS"))) {
-
-
-                    a += nombre + " " + asignatura + " " + notaE + " " + notaA + " " + notaF;
-                    break;
-                }
-            }
-
-
-        } catch (FileNotFoundException e) {
-            Log.e("FileNotFoundException", ERROR_FILE + PATH_OUT);
-        } catch (IOException e) {
-            Log.e("IOException", e.getMessage());
-        }
-        return a;
-    }
-
-
     public static void modificarNota(NotasAlumnoAsig n) {
         try (RandomAccessFile raf = new RandomAccessFile(PATH_OUT, "rw")) {
             Log.e("Entrar", n.getNombre());
@@ -167,6 +126,45 @@ public class FileManager {
         } catch (IOException e) {
             Log.e("IOException", "IOEXCEPTIOn");
         }
+    }
+
+    public static Map<String, Double> readAlumno(String alumno){
+        Map<String, Double> mapa = new HashMap<String, Double>();
+        String nombre, asignatura;
+        double notaA, NotaE, notaF;
+        try(RandomAccessFile raf = new RandomAccessFile(PATH_OUT, "rw")){
+            raf.seek(0);
+
+            while(raf.getFilePointer() < raf.length()){
+                nombre = "";
+                asignatura = "";
+                for(int i = 0; i < BYTE_NOMBRE; i++){
+                    nombre += raf.readChar();
+                }
+                nombre = nombre.trim();
+
+                for(int i = 0; i < BYTE_ASIGNATURA; i++){
+                    asignatura += raf.readChar();
+                }
+                asignatura = asignatura.trim();
+
+                NotaE = raf.readDouble();
+                notaA = raf.readDouble();
+                notaF = raf.readDouble();
+
+
+                if(nombre.equals(alumno) && notaF > 0){
+                    mapa.put(asignatura, notaF);
+                    Log.e("Put", nombre + " " + asignatura + " " + notaF);
+                }
+            }
+
+        } catch (FileNotFoundException e) {
+            Log.e("FileNotFoundException", ERROR_FILE + PATH_OUT);
+        } catch (IOException e) {
+            Log.e("IOException", "IOEXCEPTIOn");
+        }
+        return mapa;
     }
 
 }

@@ -48,7 +48,45 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/llConsulta"
         android:layout_marginTop="@dimen/margen"
-        android:orientation="vertical" />
+        android:padding="0dp"
+        android:orientation="vertical" >
+
+        <FrameLayout
+            android:id="@+id/flNotas1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <FrameLayout
+            android:id="@+id/flNotas2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <FrameLayout
+            android:id="@+id/flNotas3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <FrameLayout
+            android:id="@+id/flNotas4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <FrameLayout
+            android:id="@+id/flNotas5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <FrameLayout
+            android:id="@+id/flNotas6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <FrameLayout
+            android:id="@+id/flNotas7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
 
 
 

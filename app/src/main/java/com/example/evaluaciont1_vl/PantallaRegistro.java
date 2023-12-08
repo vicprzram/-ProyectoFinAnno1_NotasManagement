@@ -112,6 +112,8 @@ public class PantallaRegistro extends AppCompatActivity implements View.OnClickL
                     Double.parseDouble(etNotaActividades.getText().toString()),
                     Double.parseDouble(etNotaFinal.getText().toString())));
 
+            Toast.makeText(this, SUCCESSFULL_SAVE, Toast.LENGTH_LONG).show();
+
         }else if(v.getId() == R.id.btnLimpiar){
             etAlumno.getText().clear();
             etAsignatura.getText().clear();

@@ -19,7 +19,7 @@ public class PantallaInicio extends AppCompatActivity implements View.OnClickLis
     Button btnConsulta;
     ImageView ivLogo;
 
-    ListadoNotas listadoNotas = new ListadoNotas();
+    ListadoNotas listadoNotas = new ListadoNotas(); // Pilar me va a odiar
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +38,10 @@ public class PantallaInicio extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         Intent i;
         if(v.getId() == R.id.btnRegistrar){
-            Toast.makeText(this, FileManager.comprobacion(), Toast.LENGTH_LONG).show();
             i = new Intent(this, PantallaRegistro.class);
-            i.putExtra("ListadoNotas", listadoNotas);
             startActivity(i);
         }else if(v.getId() == R.id.btnConsultar){
             i = new Intent(this, PantallaConsulta.class);
-            i.putExtra("ListadoNotas", listadoNotas);
             startActivity(i);
         }
 

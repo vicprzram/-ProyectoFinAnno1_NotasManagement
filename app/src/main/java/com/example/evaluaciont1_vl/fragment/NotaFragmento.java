@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +28,7 @@ public class NotaFragmento extends Fragment {
     private String asignatura;
     private Double nota;
 
-    TextView tvNota;
+    TextView tvAsignatura, tvNota;
 
     public NotaFragmento() {
     }
@@ -57,23 +58,14 @@ public class NotaFragmento extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 //Siete FrameLayout
         View v = inflater.inflate(R.layout.fragment_nota_fragmento, container, false);
-        FrameLayout flNota1 = v.findViewById(R.id.flNotas1);
-        FrameLayout flNota2 = v.findViewById(R.id.flNotas2);
-        FrameLayout flNota3 = v.findViewById(R.id.flNotas3);
-        FrameLayout flNota4 = v.findViewById(R.id.flNotas4);
-        FrameLayout flNota5 = v.findViewById(R.id.flNotas5);
-        FrameLayout flNota6 = v.findViewById(R.id.flNotas6);
-        FrameLayout flNota7 = v.findViewById(R.id.flNotas7);
 
-        tvNota = v.findViewById(R.id.flListaNotas);
-        tvNota.setText(String.format(getString(R.string.tv_consultaNota_asig),asignatura,nota));
-        flNota1.setVisibility(View.VISIBLE);
-        flNota2.setVisibility(View.VISIBLE);
-        flNota3.setVisibility(View.VISIBLE);
-        flNota4.setVisibility(View.VISIBLE);
-        flNota5.setVisibility(View.VISIBLE);
-        flNota6.setVisibility(View.VISIBLE);
-        flNota7.setVisibility(View.VISIBLE);
+        tvAsignatura = v.findViewById(R.id.tvAsignaturaFragment);
+        tvNota = v.findViewById(R.id.tvNotaFragment);
+
+        Log.e("Fragmento", asignatura + " " + nota);
+
+        tvAsignatura.setText(asignatura);
+        tvNota.setText("" + nota);
 
         return v;
     }
