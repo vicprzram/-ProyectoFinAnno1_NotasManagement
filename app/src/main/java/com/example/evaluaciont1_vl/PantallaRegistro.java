@@ -28,6 +28,7 @@ public class PantallaRegistro extends AppCompatActivity implements View.OnClickL
     EditText etAlumno, etAsignatura, etNotaExamen, etNotaActividades, etNotaFinal;
 
     private String SUCCESSFULL_SAVE = "Se han guardado los datos correctamente";
+    private String NO_DATA = "Se han de introducir todos los datos";
 
 
     @Override
@@ -106,13 +107,25 @@ public class PantallaRegistro extends AppCompatActivity implements View.OnClickL
 
 
         }else if(v.getId() == R.id.btnGuardar) {
-            FileManager.modificarNota(new NotasAlumnoAsig(etAlumno.getText().toString(),
-                    etAsignatura.getText().toString(),
-                    Double.parseDouble(etNotaExamen.getText().toString()),
-                    Double.parseDouble(etNotaActividades.getText().toString()),
-                    Double.parseDouble(etNotaFinal.getText().toString())));
 
-            Toast.makeText(this, SUCCESSFULL_SAVE, Toast.LENGTH_LONG).show();
+            String textAlumno = etAlumno.getText().toString(), textAsignatura = etAsignatura.getText().toString(),
+                    textExamen = etNotaExamen.getText().toString(),
+                    textActividades = etNotaActividades.getText().toString(),
+                    textFinal = etNotaFinal.getText().toString();
+
+            if(textAlumno.isEmpty() || textAsignatura.isEmpty() || textExamen.isEmpty() || textActividades.isEmpty() || textFinal.isEmpty()){
+                Toast.makeText(this, NO_DATA, Toast.LENGTH_LONG).show();
+
+            }else{
+                FileManager.modificarNota(new NotasAlumnoAsig(textAlumno,
+                        textAsignatura,
+                        Double.parseDouble(textExamen),
+                        Double.parseDouble(textActividades),
+                        Double.parseDouble(textFinal)));
+
+                Toast.makeText(this, SUCCESSFULL_SAVE, Toast.LENGTH_LONG).show();
+
+            }
 
         }else if(v.getId() == R.id.btnLimpiar){
             etAlumno.getText().clear();

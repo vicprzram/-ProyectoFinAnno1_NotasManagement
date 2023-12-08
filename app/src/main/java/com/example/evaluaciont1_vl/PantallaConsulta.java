@@ -72,15 +72,12 @@ public class PantallaConsulta extends AppCompatActivity implements View.OnClickL
 
                 mostrarNotas(alumnoSeleccionado);
 
-            }else if (resultCode == RESULT_CANCELED){
-                limpiarDatos();
-
             }
         }
     }
 
     private void limpiarDatos() {
-        et.setText("");
+        et.getText().clear();
         btn.setText("Limpiar datos");//Al volver de la selección de alumno se cambiará el texto del botón a Limpiar Datos
         limpiarFragmentos();
     }
@@ -102,16 +99,12 @@ public class PantallaConsulta extends AppCompatActivity implements View.OnClickL
         Map<String, Double> mapa = FileManager.readAlumno(alumnoSeleccionado);
         limpiarFragmentos();
 
-        if(!mapa.isEmpty()) {
-            for (Map.Entry<String, Double> entry : mapa.entrySet()) {
-                Log.e("Entre", entry.getKey() + " " + entry.getValue());
-                NotaFragmento notaFragmento = NotaFragmento.newInstance(entry.getKey(), entry.getValue());
-                agregarFragmento(notaFragmento, contador);
-                contador++;
-            }
-        }else{
-            Log.e("MAPA", "MAPA vacio");
+        for (Map.Entry<String, Double> entry : mapa.entrySet()) {
+            NotaFragmento notaFragmento = NotaFragmento.newInstance(entry.getKey(), entry.getValue());
+            agregarFragmento(notaFragmento, contador);
+            contador++;
         }
+
 
         /*for (NotasAlumnoAsig nota : notas) {
 

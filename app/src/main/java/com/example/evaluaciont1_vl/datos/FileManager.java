@@ -26,7 +26,7 @@ public class FileManager {
     private static final String ERROR_FILE = "ERROR: No se ha encontrado el archivo: ";
 
     public static boolean fileExists() {
-        new File(PATH_OUT).mkdirs();
+        new File(DIR).mkdirs();
         return new File(PATH_OUT).exists();
     }
 
