@@ -29,6 +29,7 @@ public class PantallaRegistro extends AppCompatActivity implements View.OnClickL
 
     private String SUCCESSFULL_SAVE = "Se han guardado los datos correctamente";
     private String NO_DATA = "Se han de introducir todos los datos";
+    private String BAD_VALUES = "Se han de insertar valores no superiores a 10";
 
 
     @Override
@@ -92,18 +93,29 @@ public class PantallaRegistro extends AppCompatActivity implements View.OnClickL
             i = new Intent(this, PantallaSeleccionAsignatura.class);
             startActivityForResult(i, 2);
         }else if(v.getId() == R.id.btnCalcular){
-            int notaExamen = Integer.parseInt(etNotaExamen.getText().toString()),
-                    notaActividades = Integer.parseInt(etNotaActividades.getText().toString());
+            if(etNotaExamen.getText().toString().isEmpty() || etNotaActividades.getText().toString().isEmpty()){
+                Toast.makeText(this, NO_DATA, Toast.LENGTH_LONG).show();
+            }else{
 
-            if(notaExamen >= 4 && notaActividades >= 7){
-                etNotaFinal.setText("" + ((notaExamen * 0.6) + (notaActividades * 0.4)));
-            }else if(notaExamen < 4){
-                etNotaFinal.setText("" + notaExamen);
-            }else if(notaActividades < 7){
-                etNotaFinal.setText("" + ((notaExamen * 0.7) + (notaActividades * 0.3)));
+                int notaExamen = Integer.parseInt(etNotaExamen.getText().toString()),
+                        notaActividades = Integer.parseInt(etNotaActividades.getText().toString());
+
+                if((notaExamen <= 10 && notaExamen > 0) && (notaActividades <= 10 && notaActividades > 0)) {
+                    if (notaExamen >= 4 && notaActividades >= 7) {
+                        etNotaFinal.setText("" + ((notaExamen * 0.6) + (notaActividades * 0.4)));
+                    } else if (notaExamen < 4) {
+                        etNotaFinal.setText("" + notaExamen);
+                    } else if (notaActividades < 7) {
+                        etNotaFinal.setText("" + ((notaExamen * 0.7) + (notaActividades * 0.3)));
+                    }
+
+                    btnCalcularNota.setEnabled(false);
+                }else{
+                    Toast.makeText(this, BAD_VALUES, Toast.LENGTH_LONG).show();
+                }
             }
 
-            btnCalcularNota.setEnabled(false);
+
 
 
         }else if(v.getId() == R.id.btnGuardar) {
@@ -113,9 +125,11 @@ public class PantallaRegistro extends AppCompatActivity implements View.OnClickL
                     textActividades = etNotaActividades.getText().toString(),
                     textFinal = etNotaFinal.getText().toString();
 
-            if(textAlumno.isEmpty() || textAsignatura.isEmpty() || textExamen.isEmpty() || textActividades.isEmpty() || textFinal.isEmpty()){
+            if (textAlumno.isEmpty() || textAsignatura.isEmpty() || textExamen.isEmpty() || textActividades.isEmpty() || textFinal.isEmpty()) {
                 Toast.makeText(this, NO_DATA, Toast.LENGTH_LONG).show();
 
+            }else if(Double.parseDouble(textExamen) > 10 || Double.parseDouble(textActividades) > 10 || Double.parseDouble(textFinal) > 10){
+                Toast.makeText(this, BAD_VALUES, Toast.LENGTH_LONG).show();
             }else{
                 FileManager.modificarNota(new NotasAlumnoAsig(textAlumno,
                         textAsignatura,
