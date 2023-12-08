@@ -3,9 +3,12 @@ package com.example.evaluaciont1_vl;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Surface;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -20,12 +23,14 @@ public class PantallaSeleccionAsignatura extends AppCompatActivity implements Vi
     private Button btnAceptar, btnCancelar;
     private static final String CLAVE_ASIGNATURA_SELECCIONADA = "asignatura_seleccionada";
 
-
+    private int ROTATION;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_seleccion_asignatura);
+
+        ROTATION = ((WindowManager) this.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getOrientation();
 
         btnAceptar = findViewById(R.id.btnAceptarAsignatura);
         btnCancelar = findViewById(R.id.btnCancelarAsignatura);
@@ -35,20 +40,55 @@ public class PantallaSeleccionAsignatura extends AppCompatActivity implements Vi
         btnCancelar.setOnClickListener(this);
 
         LinearLayout ll = findViewById(R.id.llAsignatura);
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+        LinearLayout lP = findViewById(R.id.llAsignaturaPrimeros);
+        LinearLayout lS = findViewById(R.id.llAsignaturaSegundos);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
         lp.weight = 1;
-        for(String s : Utilities.getAsignaturas()){
-            Button button = new Button(this);
-            button.setLayoutParams(lp);
-            button.setText(s);
-            button.setPadding(0,0,0,0);
-            button.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
-            button.setTextSize(12);
-            button.setTextColor(getColor(R.color.black));
-            button.setBackgroundColor(ContextCompat.getColor(this, android.R.color.transparent));
-            button.setOnClickListener(this);
-            ll.addView(button);
+
+        switch (this.ROTATION){
+            case Surface.ROTATION_0:
+            case Surface.ROTATION_180:
+                for(String s : Utilities.getAsignaturas()){
+                    Button button = new Button(this);
+                    button.setLayoutParams(lp);
+                    button.setText(s);
+                    button.setPadding(0,0,0,0);
+                    button.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
+                    button.setTextSize(12);
+                    button.setTextColor(getColor(R.color.black));
+                    button.setBackgroundColor(ContextCompat.getColor(this, android.R.color.transparent));
+                    button.setOnClickListener(this);
+                    ll.addView(button);
+                }
+                break;
+            case Surface.ROTATION_90:
+            default:
+                for(int i = 0; i < 4; i++){
+                    Button button = new Button(this);
+                    button.setLayoutParams(lp);
+                    button.setText(Utilities.getAsignaturas()[i]);
+                    button.setPadding(0,0,0,0);
+                    button.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                    button.setTextSize(12);
+                    button.setTextColor(getColor(R.color.black));
+                    button.setBackgroundColor(ContextCompat.getColor(this, android.R.color.transparent));
+                    button.setOnClickListener(this);
+                    lP.addView(button);
+                }
+
+                for(int i = 6; i >= 4; i--){
+                    Button button = new Button(this);
+                    button.setLayoutParams(lp);
+                    button.setText(Utilities.getAsignaturas()[i]);
+                    button.setPadding(0,0,0,0);
+                    button.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                    button.setTextSize(12);
+                    button.setTextColor(getColor(R.color.black));
+                    button.setBackgroundColor(ContextCompat.getColor(this, android.R.color.transparent));
+                    button.setOnClickListener(this);
+                    lS.addView(button);
+                }
         }
 
         if (savedInstanceState != null) {

@@ -7,8 +7,10 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Surface;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -26,12 +28,15 @@ public class PantallaSeleccionAlumno extends AppCompatActivity implements View.O
     private EditText etAlumnoPestanna;
     private Button btnAceptar, btnCancelar;
 
+    private int ROTATION;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_seleccion_alumno);
+
+        ROTATION = ((WindowManager) this.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getOrientation();
 
         btnAceptar = findViewById(R.id.btnAceptar);
         btnCancelar = findViewById(R.id.btnCancelar);
@@ -45,22 +50,59 @@ public class PantallaSeleccionAlumno extends AppCompatActivity implements View.O
 
 
         LinearLayout ll = findViewById(R.id.llAlumnos);
+        LinearLayout lP = findViewById(R.id.llPrimeros);
+        LinearLayout lS = findViewById(R.id.llSegundos);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
         lp.weight = 1;
 
-        for(String s : Utilities.getAlumnos()){
-            Button button = new Button(this);
 
-            button.setLayoutParams(lp);
-            button.setText(s);
-            button.setPadding(0,0,0,0);
-            button.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
-            button.setTextSize(12);
-            button.setTextColor(getColor(R.color.black));
-            button.setBackgroundColor(ContextCompat.getColor(this, android.R.color.transparent));
-            button.setOnClickListener(this);
-            ll.addView(button);
+        switch (this.ROTATION){
+            case Surface.ROTATION_0:
+            case Surface.ROTATION_180:
+                for (String s : Utilities.getAlumnos()) {
+                    Button button = new Button(this);
+
+                    button.setLayoutParams(lp);
+                    button.setText(s);
+                    button.setPadding(0, 0, 0, 0);
+                    button.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
+                    button.setTextSize(12);
+                    button.setTextColor(getColor(R.color.black));
+                    button.setBackgroundColor(ContextCompat.getColor(this, android.R.color.transparent));
+                    button.setOnClickListener(this);
+                    ll.addView(button);
+                }
+                break;
+            case Surface.ROTATION_90:
+            default:
+                for(int i = 0; i < 11; i++){
+                    Button button = new Button(this);
+
+                    button.setLayoutParams(lp);
+                    button.setText(Utilities.getAlumnos()[i]);
+                    button.setPadding(0, 0, 0, 0);
+                    button.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
+                    button.setTextSize(12);
+                    button.setTextColor(getColor(R.color.black));
+                    button.setBackgroundColor(ContextCompat.getColor(this, android.R.color.transparent));
+                    button.setOnClickListener(this);
+                    lP.addView(button);
+                }
+
+                for(int i = 21; i >= 11; i--){
+                    Button button = new Button(this);
+
+                    button.setLayoutParams(lp);
+                    button.setText(Utilities.getAlumnos()[i]);
+                    button.setPadding(0, 0, 0, 0);
+                    button.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
+                    button.setTextSize(12);
+                    button.setTextColor(getColor(R.color.black));
+                    button.setBackgroundColor(ContextCompat.getColor(this, android.R.color.transparent));
+                    button.setOnClickListener(this);
+                    lS.addView(button);
+                }
         }
 
         if (savedInstanceState != null) {

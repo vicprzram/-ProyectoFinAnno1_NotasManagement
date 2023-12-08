@@ -21,15 +21,31 @@
 
     <LinearLayout
         android:id="@+id/llAsignatura"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_below="@id/tvTituloAsignatura"
         android:layout_margin="@dimen/margen"
         android:paddingTop="0dp"
         android:layout_weight="1"
         android:paddingBottom="0dp"
-        android:weightSum="7">
+        android:weightSum="2">
+
+        <LinearLayout
+            android:id="@+id/llAsignaturaPrimeros"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:weightSum="4"/>
+
+        <LinearLayout
+            android:id="@+id/llAsignaturaSegundos"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="4"
+            android:layout_weight="1"/>
 
     </LinearLayout>
 
